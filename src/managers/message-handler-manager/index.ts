@@ -60,7 +60,7 @@ export default class MessageHandlerManager {
 
         args.shift();
 
-        console.log(`> ${message.author.username}: ${message.content}`);
+        console.log(`> Last used command is from ${message.author.username}: ${message.content}`);
 
         await this.executeCommand(message, command, args);
     }

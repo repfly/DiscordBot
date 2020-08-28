@@ -1,6 +1,7 @@
 import MessageHandler from "../interfaces/message-handler";
 import * as Discord from "discord.js";
 import ArrayHelper from "../../../helpers/array-helper";
+import MiscHelper from "../../../helpers/misc-helper";
 
 export default class HelloMessageHandler implements MessageHandler {
     private static readonly HELLO_MESSAGES: string[] = ["hello", "hi", "hi there", "sup?", "aha"]
@@ -10,7 +11,6 @@ export default class HelloMessageHandler implements MessageHandler {
 
     async execute(message: Discord.Message, args: string[]) {
         let helloMessage = ArrayHelper.getRandomItem(HelloMessageHandler.HELLO_MESSAGES);
-
         if (!helloMessage) {
             helloMessage = "Found no way to greet you";
 

@@ -10,24 +10,22 @@ export default class PurgeMessageHandler implements MessageHandler {
     private static readonly MAX_COUNT_OF_MESSAGES_TO_DELETE_IN_ONE_TURN = 100;
 
     aliases: string[] = ["purge", "delete", "clear"];
-    description: string = "Deletes specified amount of messages from the channel";
+    description: string = "Deletes specified amount of messages from the channel.";
 
     async execute(message: Discord.Message, args: string[]) {
         if (!AuthorizationHelper.hasPermission(message.member, "MANAGE_MESSAGES")) {
-            await message.reply("You don't have the permission to manage the messages");
-
+            await message.reply("You don't have the permission ``MANAGE_MESSAGESE``.");
+            await MiscHelper.deleteCommand(message);
             return;
         }
 
         if (args.length !== 1) {
-            await message.reply("Please specify the amount of messages to delete");
-
+            await message.reply("Please specify the amount of messages to delete.");
             return;
         }
 
         if (!StringHelper.isStringBuildWithNumbersOnly(args[0])) {
-            await message.reply("Please give a valid number");
-
+            await message.reply("Please give a valid number.");
             return;
         }
 

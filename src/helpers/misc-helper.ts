@@ -1,4 +1,5 @@
 import * as Discord from "discord.js";
+import {TIMEOUT} from "dns";
 
 export enum MessageType {
     REPLY,
@@ -12,8 +13,8 @@ export interface ReplyAndDelegateArguments {
 }
 
 export default class MiscHelper {
-    private readonly static MINIMUM_SECONDS_TO_WAIT = 1;
-    private readonly static MAXIMUM_SECONDS_TO_WAIT = 10;
+    private static readonly  MINIMUM_SECONDS_TO_WAIT = 1;
+    private static readonly  MAXIMUM_SECONDS_TO_WAIT = 10;
 
     public static async sleep(milliseconds: number): Promise<void> {
         return new Promise(resolve => setTimeout(resolve, milliseconds));
@@ -50,7 +51,6 @@ export default class MiscHelper {
             throw new Error(`secondsToWait must be between 
             ${this.MINIMUM_SECONDS_TO_WAIT} and ${this.MAXIMUM_SECONDS_TO_WAIT}`);
         }
-
         // TODO: Convert this to a constant value maybe
         const emojis: string[] = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣", "🔟"];
 
@@ -61,4 +61,9 @@ export default class MiscHelper {
             secondsToWait--;
         }
     }
+    public static async  deleteCommand(message: Discord.Message){
+
+        await message.channel.lastMessage.delete();
+    }
+
 }
