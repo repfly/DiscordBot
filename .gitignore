@@ -82,3 +82,6 @@ typings/
 
 # WebStorm
 .idea
+
+# Bot configuration
+package.json

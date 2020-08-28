@@ -113,7 +113,7 @@ export default class MessageHandlerManager {
         }
 
         await message.reply(
-            `Unknown command.\nType \`${ConfigManager.config.commandPrefix}help\` to get the list of commands`
+            `Unknown command.\nType \`${ConfigManager.config.commandPrefix}help\` to get the list of commands.`
         );
     }
 }

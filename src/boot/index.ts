@@ -26,7 +26,8 @@ export default class Boot {
 
         await Boot.client.login(ConfigManager.config.token);
         Boot.client.guilds.cache.forEach(server => {
-            console.log(server.name + " id: " + server.id);
+            console.log(`id: ${server.id}`);
+
         });
     }
 

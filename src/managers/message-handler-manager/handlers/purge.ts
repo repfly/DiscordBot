@@ -21,11 +21,13 @@ export default class PurgeMessageHandler implements MessageHandler {
 
         if (args.length !== 1) {
             await message.reply("Please specify the amount of messages to delete.");
+            await MiscHelper.deleteCommand(message);
             return;
         }
 
         if (!StringHelper.isStringBuildWithNumbersOnly(args[0])) {
             await message.reply("Please give a valid number.");
+            await MiscHelper.deleteCommand(message);
             return;
         }
 
