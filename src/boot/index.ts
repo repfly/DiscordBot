@@ -2,11 +2,11 @@ import * as Discord from "discord.js";
 import {PresenceData} from "discord.js";
 import MessageHandlerManager from "../managers/message-handler-manager";
 import ConfigManager from "../config/config-manager";
-import {promises} from "dns";
 
 
 export default class Boot {
     private static client: Discord.Client;
+    private guild: Discord.Guild
 
     public static async boot() {
         await ConfigManager.load();
@@ -22,13 +22,11 @@ export default class Boot {
 
             console.log("Bot is ready");
 
+
+
         });
 
         await Boot.client.login(ConfigManager.config.token);
-        Boot.client.guilds.cache.forEach(server => {
-            console.log(`id: ${server.id}`);
-
-        });
     }
 
     private static async loadManagers() {

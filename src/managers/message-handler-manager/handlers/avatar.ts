@@ -1,7 +1,7 @@
 import MessageHandler from "../interfaces/message-handler";
 import * as Discord from "discord.js";
 import idHelper from "../../../helpers/id-helper";
-import MiscHelper from "../../../helpers/misc-helper";
+import {GuildMember, User} from "discord.js";
 
 export default class AvatarMessageHandler implements MessageHandler {
     private static readonly AVATAR_URL_SIZE = 256;
@@ -10,39 +10,31 @@ export default class AvatarMessageHandler implements MessageHandler {
     description: string = "Displays the avatar of mentioned user";
 
     async execute(message: Discord.Message, args: string[]) {
-        let mentionedUser
-        try {
-            if (message.mentions.users.first() || message.author )
-                mentionedUser = message.mentions.users.first() || message.author;
-            else if (idHelper.isIdInputValid(args[0]))
-                mentionedUser = `<@${args[0]}>`
-        } catch (e) {
-            await message.channel.send("Invalid input.")
-            return;
-        }
 
+
+       let mentionedUser = message.mentions.users.first() || message.author;
+
+       //Temp fix to make it work again. If input gets received as id,
+        // it will ignore and just display the authors avatar.
+
+        /* if (message.mentions) {
+            mentionedUser = message.mentions.users.first()
+        } else if (idHelper.isIdInputValid(args[0])){
+            mentionedUser = message.client.users.cache.get(args[0])
+        } else {
+            mentionedUser = message.author
+
+        }
+        */
 
 
         let reply = new Discord.MessageEmbed();
 
-        if (!args[0]) {
-            reply.setDescription("<@" + message.author.id + ">'s avatar")
+        reply.setDescription("<@" +mentionedUser.id+ ">'s avatar")
                 .setColor("RANDOM")
-                .setImage(message.author.avatarURL())
-            await message.channel.send(reply)
-        }
+                .setImage(mentionedUser.displayAvatarURL({dynamic: true}))
+        await message.channel.send(reply)
 
-
-        if (idHelper.isIdInputValid(args[0])){
-            try {
-                reply.setDescription("<@" +mentionedUser.id + ">'s avatar")
-                    .setImage(mentionedUser.avatarURL())
-                    .setColor("RANDOM")
-                await message.channel.send(reply);
-            } catch (e) {
-                await message.reply("invalid user.")
-            }
-        }
 
     }
 }

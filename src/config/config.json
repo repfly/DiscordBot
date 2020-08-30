@@ -1,6 +1,6 @@
 {
-  "token": "",
-  "commandPrefix": "-",
+  "token": "NDAyMTE3MjM2MDM2MjA2NTky.Wlty3A.oKwvd51DVw90TlVbambRR3ZwbTA",
+  "commandPrefix": ")",
   "enableUnknownCommandMessage": true,
   "maximumMessageCountToPurge": 1000,
   "defaultMinecraftServer": {
