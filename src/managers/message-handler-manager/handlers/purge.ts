@@ -67,12 +67,16 @@ export default class PurgeMessageHandler implements MessageHandler {
     private async deleteMessages(messageCountToDelete: number, channel: TextChannel | DMChannel | NewsChannel) {
         while (messageCountToDelete > 0) {
             if (messageCountToDelete < PurgeMessageHandler.MAX_COUNT_OF_MESSAGES_TO_DELETE_IN_ONE_TURN) {
-                await channel.bulkDelete(messageCountToDelete);
+                if (!(channel instanceof DMChannel)) {
+                    await channel.bulkDelete(messageCountToDelete);
+                }
 
                 break;
             }
 
-            await channel.bulkDelete(PurgeMessageHandler.MAX_COUNT_OF_MESSAGES_TO_DELETE_IN_ONE_TURN);
+            if (!(channel instanceof DMChannel)) {
+                await channel.bulkDelete(PurgeMessageHandler.MAX_COUNT_OF_MESSAGES_TO_DELETE_IN_ONE_TURN);
+            }
 
             messageCountToDelete -= PurgeMessageHandler.MAX_COUNT_OF_MESSAGES_TO_DELETE_IN_ONE_TURN;
         }

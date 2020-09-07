@@ -12,13 +12,13 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",
-    "discord.js": "^12.2.0"
+    "discord.js": "^12.3.1"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
-    "@types/node": "^13.13.5",
-    "ts-node": "^8.10.1",
-    "ts-node-dev": "^1.0.0-pre.44",
-    "typescript": "^3.8.3"
+    "@types/node": "^13.13.16",
+    "ts-node": "^8.10.2",
+    "ts-node-dev": "^1.0.0-pre.62",
+    "typescript": "^3.9.7"
   }
 }

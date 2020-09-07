@@ -1,5 +1,6 @@
 
 export default class idHelper {
+    //Experimental method.
     public static isIdInputValid(input: string): boolean {
 
         try {
@@ -8,6 +9,7 @@ export default class idHelper {
 
         } catch (e) {
 
+            console.log("Tried to parse wrong input to id. Check id-helper.ts")
             return false
 
         }

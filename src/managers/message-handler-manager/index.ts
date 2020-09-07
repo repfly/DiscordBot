@@ -99,7 +99,7 @@ export default class MessageHandlerManager {
         reply.setTitle("Available commands");
 
         for (let messageHandler of this.messageHandlers) {
-            const aliasesJoined = messageHandler.aliases.map(i => `${ConfigManager.config.commandPrefix}${i}`).join(", ");
+            const aliasesJoined = messageHandler.aliases.join(", ");
 
             reply.addField("**" + aliasesJoined + "**", messageHandler.description);
         }
