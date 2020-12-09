@@ -23,12 +23,16 @@ This repository contains a Discord example bot that consists of several commands
 | -hi, -hello             | Bot says hello                                               |
 | -minecraft, -mc         | Shows the server details of the given host(optional, default is: minecraft.emredemircivi.com) and port(optional, default is: 25565) |
 | -purge, -delete, -clear | Deletes specified amount of messages from the channel        |
+| -ban                    | Bans specified user from the server                          |
+| -kick                   | Kicks specified user from the server                         |
+
 
 ### Dependencies Used
 * [axios](https://github.com/axios/axios)
 * [discord.js](https://github.com/discordjs/discord.js/)
 * [ts-node](https://github.com/TypeStrong/ts-node) and [ts-node-dev](https://github.com/whitecolor/ts-node-dev)
 * [TypeScript](https://github.com/microsoft/TypeScript)
+* [Moment](https://github.com/moment/moment)
 
 ## Installation
 
