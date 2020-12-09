@@ -1,5 +1,5 @@
 import * as Discord from "discord.js";
-import {PresenceData} from "discord.js";
+import {Channel, MessageEmbed, PresenceData, TextChannel} from "discord.js";
 import MessageHandlerManager from "../managers/message-handler-manager";
 import ConfigManager from "../config/config-manager";
 
@@ -7,6 +7,7 @@ import ConfigManager from "../config/config-manager";
 export default class Boot {
     private static client: Discord.Client;
     private guild: Discord.Guild
+    private channel: TextChannel
 
     public static async boot() {
         await ConfigManager.load();

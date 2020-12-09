@@ -61,9 +61,11 @@ export default class MiscHelper {
             secondsToWait--;
         }
     }
+
     public static async  deleteCommand(message: Discord.Message){
         await this.sleep(5000)
-        await message.channel.lastMessage.delete();
+        await message.author.lastMessage;
     }
+
 
 }

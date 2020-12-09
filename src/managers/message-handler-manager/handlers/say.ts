@@ -7,7 +7,7 @@ export default class SayMessagesHandler implements MessageHandler {
     aliases: string[] = ["say"];
     description: string = "Bot types whatever you say.";
 
-    async execute(message: Discord.Message, args: String[]) {
+    async execute(message: Discord.Message, args: string[]) {
 
         if (args.toString().length == 0) {
             await message.channel.send("You need to say at least something so I can type it.")
@@ -15,8 +15,7 @@ export default class SayMessagesHandler implements MessageHandler {
             return;
         }
 
-       await message.channel.send(args[0]);
+        await message.channel.send(args.join(" "));
         return;
     }
-
 }

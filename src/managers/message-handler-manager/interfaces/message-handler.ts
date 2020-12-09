@@ -4,5 +4,5 @@ export default interface MessageHandler {
     aliases: string[];
     description: string;
 
-    execute(message: Discord.Message, args: string[]): Promise<void>;
+    execute(message: Discord.Message, args: string[]);
 }

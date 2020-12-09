@@ -4,34 +4,19 @@ import MiscHelper, {MessageType} from "./misc-helper";
 
 export interface InputHelperArguments {
     userid: number,
-    userMention: Discord.User,
-
+    userMention: Discord.User | Promise<Discord.Message | Discord.User>,
 }
+
 export default class InputHelper{
 
     //Returns the user object with given ID or mention. If authorWanted is false, it reports an error to channel.
     //If it's true, tries to parse the the string to int to see if its valid.
-   public static async getUserFromIdNorMention(message: Discord.Message, args: String, authorWanted: boolean) {
+   public static async getUserFromIdNorMention(message: Discord.Message, args: String, authorWanted?: boolean): Promise<Discord.User> {
 
-       let mentionedUser: Discord.User | Promise<Discord.Message | Discord.User>
+       let user: Discord.User
 
-       try {
-           if (message.mentions) {
-               mentionedUser = message.mentions.users.first()
-           } else {
-               if (!authorWanted) {
-                   return message.channel.send("Invalid input! You must enter someone other that you.")
-               }
-               else {
-                   mentionedUser = message.author
-                   return mentionedUser
-               }
-           }
-       } catch (e) {
-          mentionedUser = this.idToUserObject(message, args[0], authorWanted)
-       }
 
-      return mentionedUser
+      return
     }
 
     //If parsed ID is valid, returns the user with that ID. Otherwise returns author

@@ -3,6 +3,7 @@ import MessageHandler from "./interfaces/message-handler";
 import * as Discord from "discord.js";
 import ConfigManager from "../../config/config-manager";
 import MiscHelper from "../../helpers/misc-helper";
+import Boot from "../../boot";
 
 export default class MessageHandlerManager {
     private static readonly HANDLERS_FOLDER_NAME = "handlers";
@@ -41,6 +42,9 @@ export default class MessageHandlerManager {
         if (message.type !== "DEFAULT") {
             return;
         }
+        if (message.content == ConfigManager.config.commandPrefix) {
+            return;
+        }
 
         const args = message.content.split(" ");
 
@@ -50,7 +54,7 @@ export default class MessageHandlerManager {
             return;
         }
 
-        let command = args[0];
+        let command = args[0].toLocaleLowerCase();
 
         if (!command.startsWith(ConfigManager.config.commandPrefix)) {
             return;

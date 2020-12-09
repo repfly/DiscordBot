@@ -4,7 +4,7 @@ import ArrayHelper from "../../../helpers/array-helper";
 import MiscHelper from "../../../helpers/misc-helper";
 
 export default class HelloMessageHandler implements MessageHandler {
-    private static readonly HELLO_MESSAGES: string[] = ["hello", "hi", "hi there", "sup?", "aha"]
+    private static readonly HELLO_MESSAGES: string[] = ["hello", "hi", "hi there", "sup?", "aha", "another random hello message"]
 
     aliases: string[] = ["hi", "hello"];
     description: string = "Bot says hello";

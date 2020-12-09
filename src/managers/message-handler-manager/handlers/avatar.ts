@@ -1,7 +1,6 @@
 import MessageHandler from "../interfaces/message-handler";
 import * as Discord from "discord.js";
-import inputHelper from "../../../helpers/input-helper";
-import {Guild, GuildMember, User} from "discord.js";
+
 
 
 export default class AvatarMessageHandler implements MessageHandler {
@@ -12,16 +11,16 @@ export default class AvatarMessageHandler implements MessageHandler {
 
     async execute(message: Discord.Message, args: string[]) {
 
-        let mentionedUser
-        mentionedUser = await inputHelper.getUserFromIdNorMention(message, args[0], true)
-        
-
-     //   let reply = new Discord.MessageEmbed();
+        let mentionedUser: Discord.User
+        mentionedUser = message.mentions.users.first() || message.author || message.client.users.cache.get(args[0])
 
 
-               // .setImage(mentionedUser.displayAvatarURL({dynamic: true, size: AvatarMessageHandler.AVATAR_URL_SIZE}))
-        await message.channel.send(mentionedUser)
+       let reply = new Discord.MessageEmbed()
+           .setImage(mentionedUser.displayAvatarURL({dynamic: true, size: AvatarMessageHandler.AVATAR_URL_SIZE}))
+           .setTitle(`${mentionedUser.username + '#' + mentionedUser.discriminator}'s avatar`)
+           .setColor("RANDOM")
 
+        await message.channel.send(reply)
 
     }
 }
