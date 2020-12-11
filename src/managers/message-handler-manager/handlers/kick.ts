@@ -8,11 +8,11 @@ export default class BanMessageHandler implements MessageHandler {
 
     async execute(message: Discord.Message, args: string[]) {
 
-        if ( await AuthorizationHelper.isModActionEligible(message, "KICK_MEMBERS", args[0])) {
+        if (await AuthorizationHelper.isModActionEligible(message, "KICK_MEMBERS", args[0])) {
             try {
                 let flyingUser = message.mentions.members.first()
-                await flyingUser.kick(`Kicked because ${message.author.username+"#"+message.author.discriminator} wants to.`)
-                await message.channel.send(flyingUser.user.username+"#"+flyingUser.user.discriminator + " is kicked.")
+                await flyingUser.kick(`Kicked because ${message.author.username + "#" + message.author.discriminator} wants to.`)
+                await message.channel.send(flyingUser.user.username + "#" + flyingUser.user.discriminator + " is kicked.")
             } catch (e) {
                 await message.channel.send("There has been a issue. You might want to check bot's permissions again.")
                 console.log(e)

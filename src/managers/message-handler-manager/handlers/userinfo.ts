@@ -1,6 +1,7 @@
 import MessageHandler from "../interfaces/message-handler";
 import * as Discord from "discord.js";
 import inputHelper from "../../../helpers/input-helper";
+
 const moment = require('moment');
 
 export default class SayMessagesHandler implements MessageHandler {
@@ -17,7 +18,7 @@ export default class SayMessagesHandler implements MessageHandler {
 
         let info = new Discord.MessageEmbed();
 
-       info.setTitle((await user).username + "#" + (await user).discriminator)
+        info.setTitle((await user).username + "#" + (await user).discriminator)
             .addField("User account date: ", `${moment.utc((await user).createdAt).format('dddd, MMMM Do YYYY')}`)
             .addField('Joined at:', `${moment.utc(message.guild.member(await user).joinedTimestamp).format('dddd, MMMM Do YYYY')}`);
 

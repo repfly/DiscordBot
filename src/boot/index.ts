@@ -1,5 +1,5 @@
 import * as Discord from "discord.js";
-import {Channel, MessageEmbed, PresenceData, TextChannel} from "discord.js";
+import {PresenceData, TextChannel} from "discord.js";
 import MessageHandlerManager from "../managers/message-handler-manager";
 import ConfigManager from "../config/config-manager";
 

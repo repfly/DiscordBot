@@ -1,4 +1,4 @@
- import MessageHandler from "../interfaces/message-handler";
+import MessageHandler from "../interfaces/message-handler";
 import * as Discord from "discord.js";
 import * as net from "net";
 import MiscHelper from "../../../helpers/misc-helper";

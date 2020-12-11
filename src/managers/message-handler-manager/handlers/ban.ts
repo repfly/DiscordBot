@@ -6,22 +6,22 @@ export default class BanMessageHandler implements MessageHandler {
     aliases: string[] = ["ban"]
     description: string = "Bans specified user from the server.";
 
-   async execute(message: Discord.Message, args: string[]) {
+    async execute(message: Discord.Message, args: string[]) {
 
-       if (await AuthorizationHelper.isModActionEligible(message, "BAN_MEMBERS", args[0])) {
+        if (await AuthorizationHelper.isModActionEligible(message, "BAN_MEMBERS", args[0])) {
 
-           try {
-               let flyingUser = message.mentions.members.first()
-               await flyingUser.ban({
-                  reason: `Banned because ${message.author.username+"#"+message.author.discriminator} wants to.`
+            try {
+                let flyingUser = message.mentions.members.first()
+                await flyingUser.ban({
+                    reason: `Banned because ${message.author.username + "#" + message.author.discriminator} wants to.`
                 })
-               await message.channel.send(
-                   flyingUser.user.username + "#" + flyingUser.user.discriminator + " is banned."
-               )
-           } catch (e) {
-               await message.channel.send("There has been a issue. You might want to check bot's permissions again.")
-               console.log(e)
-           }
-       }
+                await message.channel.send(
+                    flyingUser.user.username + "#" + flyingUser.user.discriminator + " is banned."
+                )
+            } catch (e) {
+                await message.channel.send("There has been a issue. You might want to check bot's permissions again.")
+                console.log(e)
+            }
+        }
     }
 }

@@ -3,7 +3,6 @@ import MessageHandler from "./interfaces/message-handler";
 import * as Discord from "discord.js";
 import ConfigManager from "../../config/config-manager";
 import MiscHelper from "../../helpers/misc-helper";
-import Boot from "../../boot";
 
 export default class MessageHandlerManager {
     private static readonly HANDLERS_FOLDER_NAME = "handlers";
@@ -15,6 +14,16 @@ export default class MessageHandlerManager {
         private client: Discord.Client
     ) {
         this.registerMessageHandlers();
+    }
+
+    private static async unknownMessageArrived(message: Discord.Message) {
+        if (!ConfigManager.config.enableUnknownCommandMessage) {
+            return;
+        }
+
+        await message.reply(
+            `Unknown command.\nType \`${ConfigManager.config.commandPrefix}help\` to get the list of commands.`
+        );
     }
 
     private registerMessageHandlers() {
@@ -109,15 +118,5 @@ export default class MessageHandlerManager {
         }
 
         await message.reply(reply);
-    }
-
-    private static async unknownMessageArrived(message: Discord.Message) {
-        if (!ConfigManager.config.enableUnknownCommandMessage) {
-            return;
-        }
-
-        await message.reply(
-            `Unknown command.\nType \`${ConfigManager.config.commandPrefix}help\` to get the list of commands.`
-        );
     }
 }

@@ -1,4 +1,5 @@
 import MessageHandler from "../interfaces/message-handler";
+import InputHelper from "../../../helpers/input-helper";
 import * as Discord from "discord.js";
 
 
@@ -11,8 +12,10 @@ export default class AvatarMessageHandler implements MessageHandler {
 
     async execute(message: Discord.Message, args: string[]) {
 
-        let mentionedUser: Discord.User
-        mentionedUser = message.mentions.users.first() || message.author || message.client.users.cache.get(args[0])
+        let mentionedUser = await InputHelper.getUserFromIdNorMention(message, {
+            userID: args[0],
+            authorWanted: true
+        })
 
 
        let reply = new Discord.MessageEmbed()
