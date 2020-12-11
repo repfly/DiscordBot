@@ -14,7 +14,7 @@ export default class PurgeMessageHandler implements MessageHandler {
 
     async execute(message: Discord.Message, args: string[]) {
         if (!AuthorizationHelper.hasPermission(message.member, "MANAGE_MESSAGES")) {
-            await message.reply("You don't have the permission ``MANAGE_MESSAGESE``.");
+            await message.reply("You don't have the permission ``MANAGE_MESSAGES``.");
             await MiscHelper.deleteCommand(message);
             return;
         }

@@ -22,9 +22,6 @@ export default class Boot {
             await this.setPresence();
 
             console.log("Bot is ready");
-
-
-
         });
 
         await Boot.client.login(ConfigManager.config.token);
@@ -46,7 +43,5 @@ export default class Boot {
         };
 
         await Boot.client.user.setPresence(presence);
-
-
     }
 }
