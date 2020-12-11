@@ -1,5 +1,4 @@
 import * as Discord from "discord.js";
-import MiscHelper, {MessageType} from "./misc-helper";
 
 
 export interface InputHelperArguments {
@@ -9,36 +8,45 @@ export interface InputHelperArguments {
 
 export default class InputHelper{
 
-    //Returns the user object with given ID or mention. If authorWanted is false, it reports an error to channel.
-    //If it's true, tries to parse the the string to int to see if its valid.
-   public static async getUserFromIdNorMention(message: Discord.Message, args: String, authorWanted?: boolean): Promise<Discord.User> {
+    //Returns the user object by fetching from ID or mention.
+   public static async getUserFromIdNorMention(message: Discord.Message, options): Promise<Discord.User> {
+       let {
+           userId,
+           authorWanted
+       } = options;
 
-       let user: Discord.User
+       let user: Promise<Discord.User>;
+       if (!authorWanted){
+           if (userId.length==0){
+               await message.channel.send("Please enter a user.");
+               return;
+           }
+       }
+       if (userId.length==0){
+           return message.author;
+       }
+       if (!await this.isIdValid(message, userId[0])){
+           return;
+       }
 
+       user =  message.client.users.fetch(userId[0]) || message.client.users.fetch(message.mentions.members.first().id);
+       return user;
 
-      return
     }
 
-    //If parsed ID is valid, returns the user with that ID. Otherwise returns author
-    //as user object.
-    public static async idToUserObject(message: Discord.Message, userid: string, authorWanted: boolean){
+    //Checks if the id is valid by fetching from the server list.
+    public static async isIdValid(message: Discord.Message, userid: string): Promise<boolean>{
 
-        let user: Discord.User
         if (userid.length == 18) {
-            user = message.client.users.cache.get(userid.toString());
-         return user;
-
-        } else if(authorWanted) {
-             user = message.author;
-           return user;
-        }
-        await MiscHelper.sendAndDelete(message,
-            {
-            content: "Invalid input.",
-            messageType: MessageType.REPLY,
-            secondsToWait: 5
-            })
-        return;
+            try {
+                message.client.users.cache.get(userid)
+                return true;
+            } catch (e) {
+                console.log(e);
+                await message.channel.send(`Cannot find the user with id of ${userid}`);
+                return false;
+            }
+        } else return false;
 
     }
 }
