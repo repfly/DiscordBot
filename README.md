@@ -25,6 +25,9 @@ This repository contains a Discord example bot that consists of several commands
 | -purge, -delete, -clear | Deletes specified amount of messages from the channel        |
 | -ban                    | Bans specified user from the server                          |
 | -kick                   | Kicks specified user from the server                         |
+| -encode                 | Encodes the given string with base65536                      |
+| -decode                 | Decodes the given string with base65536                      |
+
 
 
 ### Dependencies Used
@@ -33,6 +36,7 @@ This repository contains a Discord example bot that consists of several commands
 * [ts-node](https://github.com/TypeStrong/ts-node) and [ts-node-dev](https://github.com/whitecolor/ts-node-dev)
 * [TypeScript](https://github.com/microsoft/TypeScript)
 * [Moment](https://github.com/moment/moment)
+* [base65536](https://github.com/qntm/base65536)
 
 ## Installation
 
