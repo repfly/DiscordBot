@@ -6,8 +6,6 @@ import ConfigManager from "../config/config-manager";
 
 export default class Boot {
     private static client: Discord.Client;
-    private guild: Discord.Guild
-    private channel: TextChannel
 
     public static async boot() {
         await ConfigManager.load();

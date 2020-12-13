@@ -46,7 +46,7 @@ export default class PurgeMessageHandler implements MessageHandler {
         await MiscHelper.animateSeconds(message, 3);
 
         try {
-            await this.deleteMessages(messageCountToDelete, message.channel);
+            await PurgeMessageHandler.deleteMessages(messageCountToDelete, message.channel);
         } catch {
             await MiscHelper.sendAndDelete(
                 message, {
@@ -64,7 +64,7 @@ export default class PurgeMessageHandler implements MessageHandler {
         });
     }
 
-    private async deleteMessages(messageCountToDelete: number, channel: TextChannel | DMChannel | NewsChannel) {
+    private static async deleteMessages(messageCountToDelete: number, channel: TextChannel | DMChannel | NewsChannel) {
         while (messageCountToDelete > 0) {
             if (messageCountToDelete < PurgeMessageHandler.MAX_COUNT_OF_MESSAGES_TO_DELETE_IN_ONE_TURN) {
                 if (!(channel instanceof DMChannel)) {
