@@ -2,7 +2,7 @@ import * as Discord from "discord.js";
 
 
 export interface InputHelperArguments {
-    userID: string,
+    userID: string[],
     authorWanted: boolean
 }
 

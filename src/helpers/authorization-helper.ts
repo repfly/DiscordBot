@@ -6,7 +6,7 @@ import InputHelper from "./input-helper";
         return guildMember.hasPermission(permissionResolvable);
     }
 
-    public static async isModActionEligible(message: Message, permissionResolvable: PermissionResolvable, args: string): Promise<boolean> {
+    public static async isModActionEligible(message: Message, permissionResolvable: PermissionResolvable, args: string[]): Promise<boolean> {
 
         if (!message.member.hasPermission(permissionResolvable)) {
            await  message.channel.send("You do not have the permission to do that.");

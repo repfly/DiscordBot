@@ -12,7 +12,7 @@ export default class SayMessagesHandler implements MessageHandler {
     async execute(message: Discord.Message, args: string[]) {
 
         let user = inputHelper.getUserFromIdNorMention(message, {
-            userID: args[0],
+            userID: args,
             authorWanted: true
         })
 

@@ -48,7 +48,7 @@ export default class PurgeMessageHandler implements MessageHandler {
         try {
             await PurgeMessageHandler.deleteMessages(messageCountToDelete, message.channel);
         } catch {
-            await MiscHelper.sendAndDelete(
+            await MiscHelper.sendAndDelete( 
                 message, {
                     content: "Failed to delete messages, " +
                         "maybe the messages that you're trying to delete are older than 14 days?"

@@ -8,7 +8,7 @@ export default class BanMessageHandler implements MessageHandler {
 
     async execute(message: Discord.Message, args: string[]) {
 
-        if (await AuthorizationHelper.isModActionEligible(message, "BAN_MEMBERS", args[0])) {
+        if (await AuthorizationHelper.isModActionEligible(message, "BAN_MEMBERS", args)) {
 
             try {
                 let flyingUser = message.mentions.members.first()

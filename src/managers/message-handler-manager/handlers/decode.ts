@@ -6,10 +6,10 @@ export default class decodeMessageHandler implements MessageHandler {
     aliases: string[] = ["decode"];
     description: string = "Decodes the given string with base65536."
 
-   async execute(message: Discord.Message, args: string[]) {
-        if (!args[0]){
-           await message.channel.send("Please give an input first.");
-           return
+    async execute(message: Discord.Message, args: string[]) {
+        if (!args[0]) {
+            await message.channel.send("Please give an input first.");
+            return
         }
         let unit8array = decode(args.join(" "))
         let response = new TextDecoder().decode(unit8array)

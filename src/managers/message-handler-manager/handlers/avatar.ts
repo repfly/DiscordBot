@@ -13,17 +13,16 @@ export default class AvatarMessageHandler implements MessageHandler {
     async execute(message: Discord.Message, args: string[]) {
 
         let mentionedUser = await InputHelper.getUserFromIdNorMention(message, {
-            userID: args[0],
+            userID: args,
             authorWanted: true
-        })
+        });
 
 
        let reply = new Discord.MessageEmbed()
            .setImage(mentionedUser.displayAvatarURL({dynamic: true, size: AvatarMessageHandler.AVATAR_URL_SIZE}))
            .setTitle(`${mentionedUser.username + '#' + mentionedUser.discriminator}'s avatar`)
-           .setColor("RANDOM")
+           .setColor("RANDOM");
 
-        await message.channel.send(reply)
-
+        await message.channel.send(reply);
     }
 }

@@ -1,5 +1,10 @@
 interface Config {
+    readonly consumer_key: string;
+    readonly consumer_secret: string;
+    readonly access_token_key: string;
+    readonly access_token_secret: string;
     readonly token: string;
+    readonly APIKey
     readonly commandPrefix: string;
     readonly enableUnknownCommandMessage: boolean;
     readonly maximumMessageCountToPurge: number;
